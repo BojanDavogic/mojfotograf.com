@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojFotograf — Uskoro</title>
+    <meta name="description" content="MojFotograf — platforma za pronalaženje i rezervaciju profesionalnih fotografa u Srbiji. Uskoro dostupna.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mojfotograf.com">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="MojFotograf — Uskoro">
+    <meta property="og:description" content="Pronađi i rezerviši profesionalnog fotografa za svaku priliku. Uskoro.">
+    <meta property="og:url" content="https://mojfotograf.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="sr_RS">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #c8a951;
+            --gold-light: #e0c878;
+            --gold-dark: #a88a3a;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --text-primary: #f0f0f0;
+            --text-secondary: #9a9ab0;
+            --text-muted: #6a6a80;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            left: -20%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(200, 169, 81, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            right: -20%;
+            width: 50%;
+            height: 70%;
+            background: radial-gradient(ellipse, rgba(200, 169, 81, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Logo / Brand */
+        .brand {
+            margin-bottom: 1rem;
+        }
+
+        .brand-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 32px rgba(200, 169, 81, 0.2);
+        }
+
+        .brand-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(200, 169, 81, 0.1);
+            border: 1px solid rgba(200, 169, 81, 0.25);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gold-light);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        /* Description */
+        .description {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .description strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .feature:hover {
+            border-color: rgba(200, 169, 81, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Divider */
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Signup section */
+        .signup-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .signup-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tabs for photographer/client */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            border-color: rgba(200, 169, 81, 0.4);
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            background: rgba(200, 169, 81, 0.15);
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        /* Form */
+        .form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .form input[type="email"] {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form input[type="email"]::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form input[type="email"]:focus {
+            border-color: var(--gold);
+        }
+
+        .form input[name="user_type"] {
+            display: none;
+        }
+
+        .form button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0a0a0f;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .form button:hover {
+            box-shadow: 0 4px 20px rgba(200, 169, 81, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .form button:active {
+            transform: translateY(0);
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            padding: 1rem;
+            background: rgba(200, 169, 81, 0.1);
+            border: 1px solid rgba(200, 169, 81, 0.3);
+            border-radius: 10px;
+            color: var(--gold-light);
+            font-size: 0.9rem;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        /* Social */
+        .social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: rgba(200, 169, 81, 0.4);
+            color: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        .footer {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .brand-name {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .form {
+                flex-direction: column;
+            }
+
+            .form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Brand -->
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+            </div>
+            <div class="brand-name">MojFotograf</div>
+        </div>
+
+        <div class="badge">Uskoro dostupno</div>
+
+        <!-- Description -->
+        <p class="description">
+            Platforma koja povezuje <strong>klijente</strong> sa <strong>profesionalnim fotografima</strong>.
+            Pregledaj portfolije, uporedi cene i rezervisi termin — sve na jednom mestu.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="feature-text">Pretrazi fotografe po lokaciji i specijalizaciji</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="feature-text">Rezervisi termin online u par klikova</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                </div>
+                <div class="feature-text">Pregledaj portfolije i ocene klijenata</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="feature-text">Direktna komunikacija sa fotografom</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Signup -->
+        <div class="signup-section">
+            <div class="signup-title">Budi medju prvima</div>
+            <div class="signup-subtitle">Ostavi email i obavesticemo te kad pokrenemo platformu</div>
+
+            <div class="tabs">
+                <button class="tab active" data-type="klijent" onclick="selectTab(this)">Klijent sam</button>
+                <button class="tab" data-type="fotograf" onclick="selectTab(this)">Fotograf sam</button>
+            </div>
+
+            <form class="form" id="signup-form" action="https://formspree.io/f/xlgwneaq" method="POST">
+                <input type="email" name="email" placeholder="tvoj@email.com" required>
+                <input type="hidden" name="user_type" value="klijent">
+                <button type="submit">Obavesti me</button>
+            </form>
+
+            <div class="success-message" id="success-message">
+                Hvala! Obavesticemo te cim platforma bude dostupna.
+            </div>
+        </div>
+
+        <!-- Social -->
+        <div class="social">
+            <a href="https://instagram.com/mojfotograf" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://facebook.com/mojfotograf" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <a href="mailto:info@mojfotograf.com">info@mojfotograf.com</a>
+        </div>
+    </div>
+
+    <script>
+        function selectTab(el) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelector('input[name="user_type"]').value = el.dataset.type;
+        }
+
+        // Handle form submission
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                }
+            } catch (err) {
+                // Fallback — open mailto
+                const email = data.get('email');
+                const type = data.get('user_type');
+                window.location.href = `mailto:info@mojfotograf.com?subject=MojFotograf - Prijava (${type})&body=Email: ${email}`;
+            }
+        });
+    </script>
+</body>
+</html>
