@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mojfotograf.com — Vodič za fotografe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              PAGE 1                     */
+        /* ═══════════════════════════════════════ */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 40%, #16213e 100%);
+            color: #fff;
+            padding: 50px 50px 44px;
+            position: relative;
+            min-height: 290px;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a84c, #e8d48b, #c9a84c);
+        }
+
+        /* Decorative circles in hero */
+        .hero-decor {
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+        }
+
+        .hero-decor::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.06);
+        }
+
+        .hero-decor-2 {
+            position: absolute;
+            bottom: -40px;
+            right: 80px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.05);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 38px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #c9a84c;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #e8d48b;
+            font-weight: 400;
+        }
+
+        .badge {
+            background: rgba(201, 168, 76, 0.12);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            color: #e8d48b;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .hero-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.22;
+            margin-bottom: 18px;
+            max-width: 480px;
+        }
+
+        .hero h1 .gold {
+            color: #c9a84c;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.65;
+            max-width: 460px;
+            font-weight: 300;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .content {
+            padding: 38px 50px 30px;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #c9a84c;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 28px;
+            line-height: 1.3;
+        }
+
+        /* Benefits grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 36px;
+        }
+
+        .benefit-card {
+            background: #fafaf8;
+            border: 1px solid #eeeadf;
+            border-radius: 12px;
+            padding: 22px 20px;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c9a84c, #e8d48b);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .benefit-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 7px;
+        }
+
+        .benefit-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* How it works */
+        .how-section {
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+            border-radius: 16px;
+            padding: 28px 32px 30px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.07);
+        }
+
+        .how-section .section-label {
+            color: #e8d48b;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .steps {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #c9a84c, #e8d48b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0 auto 12px;
+        }
+
+        .step h4 {
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .step p {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .step-arrow {
+            display: flex;
+            align-items: center;
+            padding-top: 8px;
+        }
+
+        .step-arrow svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              PAGE 2                     */
+        /* ═══════════════════════════════════════ */
+
+        .page2-header {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            padding: 24px 50px 20px;
+            position: relative;
+        }
+
+        .page2-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a84c, #e8d48b, #c9a84c);
+        }
+
+        .page2-header .logo {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .page2-header p {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        .page2-content {
+            padding: 24px 50px 20px;
+        }
+
+        /* Features detail */
+        .features-list {
+            margin-bottom: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0ede4;
+            align-items: flex-start;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-num {
+            width: 26px;
+            height: 26px;
+            min-width: 26px;
+            background: linear-gradient(135deg, #c9a84c, #e8d48b);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-top: 1px;
+        }
+
+        .feature-item h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 2px;
+        }
+
+        .feature-item p {
+            font-size: 11.5px;
+            color: #666;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background: linear-gradient(135deg, #fdfcf9, #faf8f2);
+            border: 2px solid #c9a84c;
+            border-radius: 16px;
+            padding: 22px 32px 20px;
+            text-align: center;
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #c9a84c, #e8d48b);
+            color: #1a1a2e;
+            padding: 5px 24px;
+            border-radius: 20px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .pricing-section .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 10px 0 2px;
+        }
+
+        .pricing-section .price-sub {
+            font-size: 13px;
+            color: #999;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .pricing-section .price-note {
+            font-size: 11.5px;
+            color: #555;
+            line-height: 1.55;
+            max-width: 400px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .faq-item {
+            background: #fafaf8;
+            border: 1px solid #eeeadf;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .faq-item h4 {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 3px;
+        }
+
+        .faq-item p {
+            font-size: 10.5px;
+            color: #666;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+            border-radius: 16px;
+            padding: 24px 32px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.06);
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.06);
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 .gold {
+            color: #c9a84c;
+        }
+
+        .cta-section > p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 18px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-item {
+            text-align: center;
+        }
+
+        .cta-item .label {
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .cta-item .value {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #e8d48b;
+        }
+
+        .cta-divider {
+            width: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 14px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: #bbb;
+            font-weight: 300;
+        }
+
+        .page-footer .dot {
+            color: #c9a84c;
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: #fff; }
+            .page { margin: 0; box-shadow: none; }
+        }
+
+        /* Screen preview styles */
+        @media screen {
+            body {
+                background: #e5e5e5;
+                padding: 30px 0;
+            }
+            .page {
+                box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                    PAGE 1                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page">
+    <div class="hero">
+        <div class="hero-decor"></div>
+        <div class="hero-decor-2"></div>
+        <div class="hero-top">
+            <div class="logo">moj<span>fotograf</span>.com</div>
+            <div class="badge">Vodič za fotografe</div>
+        </div>
+        <div class="hero-body">
+            <h1>
+                Vaš rad zaslužuje<br>
+                <span class="gold">pravu platformu.</span>
+            </h1>
+            <p class="hero-subtitle">
+                mojfotograf.com je platforma koja povezuje profesionalne
+                fotografe sa klijentima — na jednostavan, moderan i profesionalan način.
+            </p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="section-label">Zašto mojfotograf.com</div>
+        <div class="section-title">Sve što vam treba za rast posla, na jednom mestu</div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </div>
+                <h3>Profesionalni portfolio</h3>
+                <p>Predstavite svoj rad kroz elegantan profil sa galerijom fotografija, specijalnostima i cenama usluga.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+                    </svg>
+                </div>
+                <h3>Sistem za zakazivanje</h3>
+                <p>Kalendar sa slobodnim terminima, automatski zahtevi i upravljanje rasporedom — bez nepotrebnog telefoniranja.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        <line x1="9" y1="9" x2="15" y2="9"/>
+                        <line x1="9" y1="13" x2="13" y2="13"/>
+                    </svg>
+                </div>
+                <h3>Direktna komunikacija</h3>
+                <p>Chat u realnom vremenu sa klijentima. Dogovorite detalje brzo i profesionalno, sve na jednom mestu.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <line x1="8" y1="11" x2="14" y2="11"/>
+                        <line x1="11" y1="8" x2="11" y2="14"/>
+                    </svg>
+                </div>
+                <h3>Klijenti vas pronalaze</h3>
+                <p>Napredna pretraga po lokaciji, specijalnosti i ceni. Mapa fotografa pomoću koje vas klijenti lako pronalaze.</p>
+            </div>
+        </div>
+
+        <div class="how-section">
+            <div class="section-label">Kako funkcioniše</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Registrujte se</h4>
+                    <p>Kreirajte nalog za fotografa i popunite svoj profil</p>
+                </div>
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Postavite portfolio</h4>
+                    <p>Dodajte fotografije, usluge i definišite cene</p>
+                </div>
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Primajte klijente</h4>
+                    <p>Klijenti vas pronalaze, šalju upite i zakazuju termine</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span>mojfotograf.com</span>
+        <span><span class="dot">●</span> Strana 1 od 2</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                    PAGE 2                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page">
+    <div class="page2-header">
+        <div class="logo">moj<span>fotograf</span>.com</div>
+        <p>Vodič za fotografe — detaljne informacije</p>
+    </div>
+
+    <div class="page2-content">
+        <div class="section-label">Detaljne funkcionalnosti</div>
+
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-num">01</div>
+                <div>
+                    <h3>Pretraga i vidljivost</h3>
+                    <p>Klijenti vas pronalaze pretragom po gradu, tipu fotografije (svadba, portret, event...) i cenovnom rangu. Vaš profil se prikazuje i na interaktivnoj mapi fotografa.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">02</div>
+                <div>
+                    <h3>Upravljanje uslugama i cenama</h3>
+                    <p>Kreirajte pakete usluga sa opisom, trajanjem i cenom. Klijenti odmah vide šta nudite i po kojoj ceni — transparentno i profesionalno.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">03</div>
+                <div>
+                    <h3>Kalendar i dostupnost</h3>
+                    <p>Postavite radno vreme, blokirajte dane kada niste dostupni i upravljajte terminima. Klijenti vide samo slobodne termine — bez nepotrebnih poziva.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">04</div>
+                <div>
+                    <h3>Recenzije i reputacija</h3>
+                    <p>Nakon svakog završenog termina, klijenti ostavljaju ocene i recenzije. Kvalitetan rad znači bolji rejting i više klijenata.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">05</div>
+                <div>
+                    <h3>Statistika profila</h3>
+                    <p>Pratite koliko ljudi pregleda vaš profil, koliko upita dobijate i kako vaš posao napreduje tokom vremena.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-section">
+            <div class="pricing-badge">Ponuda za rane korisnike</div>
+            <div class="price">Besplatno</div>
+            <div class="price-sub">za sve fotografe koji se prvi pridruže</div>
+            <p class="price-note">
+                Kao jedan od prvih fotografa na platformi, dobijate potpuni pristup
+                svim funkcionalnostima bez ikakve naknade. Pomozite nam da izgradimo zajednicu
+                i zauzmite svoje mesto pre konkurencije.
+            </p>
+        </div>
+
+        <div class="section-label">Česta pitanja</div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Da li moram nešto da platim?</h4>
+                <p>Ne. Platforma je potpuno besplatna za rane korisnike. Nema skrivenih troškova.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Ko može da se registruje?</h4>
+                <p>Svi profesionalni i poluprofesionalni fotografi koji aktivno rade sa klijentima.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Koliko vremena treba za kreiranje profila?</h4>
+                <p>Registracija traje 2 minuta. Popunjavanje profila i postavljanje portfolija oko 15 minuta.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Da li platforma uzima proviziju?</h4>
+                <p>Ne. Direktno dogovarate uslove sa klijentima. Platforma ne uzima procenat od vaše zarade.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Spremni da <span class="gold">započnete</span>?</h2>
+            <p>Pridružite se prvim fotografima na platformi i budite korak ispred konkurencije.</p>
+            <div class="cta-buttons">
+                <div class="cta-item">
+                    <div class="label">Web</div>
+                    <div class="value">mojfotograf.com</div>
+                </div>
+                <div class="cta-divider"></div>
+                <div class="cta-item">
+                    <div class="label">Email</div>
+                    <div class="value">info@mojfotograf.com</div>
+                </div>
+                <div class="cta-divider"></div>
+                <div class="cta-item">
+                    <div class="label">Instagram</div>
+                    <div class="value">@mojfotograf.app</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span>mojfotograf.com</span>
+        <span><span class="dot">●</span> Strana 2 od 2</span>
+    </div>
+</div>
+
+</body>
+</html>
